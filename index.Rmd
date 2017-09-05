@@ -1,0 +1,17 @@
+---
+title: "Plotly interactive graph, September 04, 2017"
+output: html_document
+---
+
+## R Markdown
+
+During the examination of mtcars data set, it appeared that several variables were strongly correlated to each other. Among the most obvious examples, cyl, disp, hp, wt are all strongly positively correlated to each other. This makes intuitive sense, because heavier cars call for larger engines, which typically come with more cylinders, and horse power, etc. Essentially, these variables represent different ways in which the same phenomenon can be expressed, as far as model predictors are concerned. 
+
+The graph below allows to examine the linear relationships that exist among these four variables.
+
+```{r echo = FALSE, message=FALSE}
+library(plotly)
+figure <- with(mtcars, plot_ly(x = disp, y = hp, z = wt, type = "scatter3d", mode = "markers", color = as.factor(cyl))) %>% layout(scene = list(xaxis = list(title = "disp"), yaxis = list(title = "hp"), zaxis = list(title = "wt")))
+
+figure
+```
